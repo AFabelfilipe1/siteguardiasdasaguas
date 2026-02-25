@@ -1,0 +1,275 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #e5e5e5;
+}
+
+/* Header e navegação */
+header {
+    background: #8e6db3;
+    color: black;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 12%;
+    cursor: pointer;
+    object-fit: cover;
+    background-color: #6b4f8a; /* cor de fallback */
+    transition: transform 0.3s ease;
+}
+
+.logo-image:hover {
+    transform: rotate(5deg) scale(1.05);
+}
+
+.logo-area h2, .logo-area p {
+    margin: 0;
+}
+
+.logo-area p {
+    font-size: 12px;
+}
+
+nav button {
+    background: #6b4f8a;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    margin: 0 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+nav button:hover {
+    background: #4a3a63;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+nav button.active-nav {
+    background: #4a3a63;
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    border: 1px solid white;
+}
+
+/* Páginas */
+.page {
+    display: none;
+    padding: 30px;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.active {
+    display: block;
+}
+
+/* Estilos para os cards */
+.card {
+    background: #7f9db8;
+    border-radius: 20px;
+    margin: 15px 0;
+    color: #333;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+/* Estilos específicos para cards de update */
+.update-card {
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.update-card .card-header {
+    padding: 15px 20px;
+    font-weight: bold;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease;
+    background: #7f9db8;
+}
+
+.update-card .card-header:hover {
+    background: #6f8da8;
+}
+
+/* Quando o card está ativo, muda a cor do header */
+.update-card.active .card-header {
+    background: #5f7d98;
+    color: white;
+}
+
+/* Conteúdo do card escondido por padrão */
+.update-card .card-content {
+    display: none;
+    padding: 0 20px 20px 20px;
+    background: #7f9db8;
+    border-top: 1px solid rgba(255,255,255,0.3);
+    animation: slideDown 0.3s ease;
+}
+
+/* Quando a classe show é adicionada, o conteúdo aparece */
+.update-card .card-content.show {
+    display: block !important;
+}
+
+/* Animação suave ao abrir */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Grid layout */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+/* Botão de download */
+.download {
+    background: #7f9db8;
+    border: none;
+    padding: 15px 40px;
+    font-size: 20px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.download:hover {
+    background: #5f7d98;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.download:active {
+    transform: scale(0.95);
+}
+
+/* Título de atualizações */
+.update-title {
+    background: #1e2746;
+    color: white;
+    width: 200px;
+    text-align: center;
+    padding: 10px;
+    border-radius: 20px;
+    margin-bottom: 30px;
+}
+
+/* Títulos e textos */
+h2 {
+    color: #333;
+}
+
+h3 {
+    margin-top: 0;
+    color: #1e2746;
+}
+
+/* Texto introdutório */
+.intro-text {
+    background: #7f9db8;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 20px 0;
+    color: #333;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    font-size: 1.1em;
+    line-height: 1.6;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px 10px;
+    }
+    
+    .logo-area {
+        margin-bottom: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    nav button {
+        margin: 5px;
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+    
+    .page {
+        padding: 20px 15px;
+    }
+    
+    .grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .download {
+        width: 100%;
+        padding: 15px 20px;
+    }
+}
+
+/* Melhorias de acessibilidade */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Foco visível para navegação por teclado */
+button:focus-visible,
+.logo-image:focus-visible {
+    outline: 3px solid #4a3a63;
+    outline-offset: 2px;
+}
+
+/* Scroll suave */
+html {
+    scroll-behavior: smooth;
+}

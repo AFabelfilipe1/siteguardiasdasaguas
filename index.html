@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guardiãs das Águas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Cabeçalho -->
+    <header class="topbar">
+        <div class="logo-area">
+            <img src="assets/logo-guardiaAguas.jpg" alt="Logo do Projeto Guardiãs das Águas" class="logo-image">
+            <div>
+                <h2>Guardiãs das Águas</h2>
+                <p>Projeto de proteção e conservação das águas</p>
+                <p>Projeto Saga Senai</p>
+            </div>
+        </div>
+
+        <nav aria-label="Navegação principal">
+            <button onclick="showPage('home')" aria-current="page">Página Inicial</button>
+            <button onclick="showPage('specs')">Especificações</button>
+            <button onclick="showPage('updates')">Atualizações</button>
+        </nav>
+    </header>
+
+    <!-- Página Inicial -->
+    <section id="home" class="page active">
+        <h2>Bem-vindo ao Projeto "Guardiãs das Águas"</h2>
+        
+        <div class="intro-text">
+            <p>Este projeto é uma iniciativa de desenvolvimento de um jogo de aventura inspirado na mitologia indígena brasileira, com o objetivo de promover a conscientização sobre a importância da preservação dos recursos hídricos e a valorização da cultura indígena.</p>
+        </div>
+
+        <div class="card">
+            <h1>Sobre o Jogo:</h1>
+            <p><strong>Yandara - Mitologia Indígena</strong></p>
+            <h2>Descrição: </h2>
+            <p>O Game "Yandara - Mitologia Indígena" é um jogo de aventura que se inspira nas narrativas da cultura indígena brasileira. O jogador acompanha Yandara, a guardiã das águas, em sua missão de proteger os rios sagrados contra as forças que ameaçam o equilíbrio da natureza.</p>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <h2>Sobre o Projeto:</h2>
+                <p><strong>• Objetivo do jogo:</strong><br>Conscientizar sobre a preservação das águas através da cultura indígena.</p>
+                <p><strong>• Público-alvo:</strong><br>Jovens e adultos interessados em jogos de aventura e cultura brasileira.</p>
+                <p><strong>• Motor de Jogo:</strong><br>Godot.</p>
+                <p><strong>• Gênero:</strong><br>Aventura e RPG.</p>
+                <p><strong>• Linguagem:</strong><br>Python.</p>
+                <p><strong>• Plataformas:</strong><br>Windows, Linux e macOS.</p>
+                <p><strong>• Contexto cultural:</strong><br>Mitologia indígena brasileira e lendas dos rios sagrados.</p>
+            </div>
+
+            <div class="card">
+                <h2>Sobre a Equipe:</h2>
+                <p><strong>Área 404 - Desenvolvimento de Jogos</strong></p>
+                <p><strong>Alunos:</strong><br>
+                - Abel Filipe Cardoso Cândido<br>
+                - Lais Barbosa Santos<br>
+                - Mykael José Rodrigues Lima<br>
+                - Matheus Barroso Silva<br>
+                - Sophia Alves de Araujo e Lima</p>
+                <p><strong>Orientador:</strong> Professor Lucas da Silva Lopes</p>
+                <p><strong>Área de Atuação:</strong><br>Programação de Jogos Digitais - Senai Uberlândia</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Especificações -->
+    <section id="specs" class="page">
+        <h2>Especificações Técnicas</h2>
+
+        <div class="grid">
+            <div class="card">
+                <h2>Mínimos:</h2>
+                <p><strong>SO:</strong> Windows 10 64-bit</p>
+                <p><strong>Processador:</strong> Intel i3 / AMD equivalente</p>
+                <p><strong>Memória:</strong> 6 GB RAM</p>
+                <p><strong>GPU:</strong> GTX 600 ou Radeon HD 7000</p>
+                <p><strong>DirectX:</strong> 11</p>
+                <p><strong>Armazenamento:</strong> 50 GB</p>
+            </div>
+
+            <div class="card">
+                <h2>Recomendados:</h2>
+                <p><strong>SO:</strong> Windows 10 64-bit</p>
+                <p><strong>Processador:</strong> Intel i7 / Ryzen 5</p>
+                <p><strong>Memória:</strong> 8 GB RAM</p>
+                <p><strong>GPU:</strong> GTX 1060 / RX 6400</p>
+                <p><strong>DirectX:</strong> 11</p>
+                <p><strong>Armazenamento:</strong> 50 GB</p>
+            </div>
+        </div>
+
+        <button class="download" onclick="mostrarMensagem()">Download</button>
+    </section>
+     
+    <!-- Atualizações -->
+    <section id="updates" class="page">
+        <h2 class="update-title">Atualizações</h2>
+
+        <div class="card update-card" onclick="toggleCard(this)">
+            <div class="card-header">Atualização #1: Versão 0.1 - Protótipo inicial</div>
+            <div class="card-content">
+                <p>Protótipo básico com mecânicas fundamentais de movimento e interação.</p>
+            </div>
+        </div>
+
+        <div class="card update-card" onclick="toggleCard(this)">
+            <div class="card-header">Atualização #2: Versão 0.5 - Sistema de mapa</div>
+            <div class="card-content">
+                <p>Sistema completo de mapa, permitindo navegação pelos rios sagrados e regiões da floresta.</p>
+            </div>
+        </div>
+
+        <div class="card update-card" onclick="toggleCard(this)">
+            <div class="card-header">Atualização #3: Versão 1.0 - Demo jogável</div>
+            <div class="card-content">
+                <p>Demo jogável com 3 fases completas, inimigos básicos e desafios ambientais.</p>
+            </div>
+        </div>
+
+        <div class="card update-card" onclick="toggleCard(this)">
+            <div class="card-header">Atualização #4: Versão 1.1 - Compatibilidade</div>
+            <div class="card-content">
+                <p>Compatibilidade melhorada com diferentes hardwares e correção de bugs.</p>
+            </div>
+        </div>
+
+        <div class="card update-card" onclick="toggleCard(this)">
+            <div class="card-header">Atualização #5: Versão 1.5 - Divulgação final</div>
+            <div class="card-content">
+                <p>Versão final com todas as fases desbloqueadas, cutscenes completas e conquistas.</p>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
