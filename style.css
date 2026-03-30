@@ -1,0 +1,439 @@
+:root {
+    --primary: #8e6db3;
+    --primary-dark: #6b4f8a;
+    --primary-darker: #4a3a63;
+    --secondary: #7f9db8;
+    --secondary-dark: #5f7d98;
+    --bg-light: #e5e5e5;
+    --text-dark: #333;
+    --text-light: #fff;
+    --shadow: 0 4px 8px rgba(0,0,0,0.1);
+    --shadow-hover: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: var(--bg-light);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+header {
+    background: var(--primary);
+    color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    box-shadow: var(--shadow);
+    flex-wrap: wrap;
+    gap: 15px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    cursor: pointer;
+    object-fit: cover;
+    background: var(--primary-dark);
+    transition: all 0.3s ease;
+}
+
+.logo-image:hover {
+    transform: rotate(3deg) scale(1.05);
+}
+
+.logo-area div h2 {
+    font-size: 1.4rem;
+    margin-bottom: 5px;
+}
+
+.logo-area div p {
+    font-size: 0.8rem;
+    margin: 0;
+}
+
+/* Navegação */
+nav {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+nav button {
+    background: var(--primary-dark);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+nav button:hover {
+    background: var(--primary-darker);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+nav button.active-nav {
+    background: var(--primary-darker);
+    box-shadow: inset 0 0 0 2px white, var(--shadow);
+}
+
+/* Container principal */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Páginas */
+.page {
+    display: none;
+    animation: fadeIn 0.4s ease;
+}
+
+.page.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Cards */
+.card {
+    background: var(--secondary);
+    border-radius: 20px;
+    padding: 25px;
+    margin: 20px 0;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+}
+
+.card h1, .card h2, .card h3 {
+    margin-bottom: 15px;
+    color: var(--primary-darker);
+}
+
+.game-title {
+    background: var(--primary-dark);
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 1rem;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+/* Grid */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+    margin: 20px 0;
+}
+
+/* Intro text */
+.intro-text {
+    background: var(--secondary);
+    border-radius: 20px;
+    padding: 25px;
+    margin: 20px 0;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    box-shadow: var(--shadow);
+}
+
+/* Abas de mecânicas */
+.mecanicas-card {
+    padding: 20px;
+}
+
+.mecanicas-tabs {
+    margin-top: 20px;
+}
+
+.tab-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.tab-btn {
+    background: var(--primary-dark);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.tab-btn:hover {
+    background: var(--primary-darker);
+    transform: translateY(-2px);
+}
+
+.tab-btn.active {
+    background: var(--primary-darker);
+    box-shadow: inset 0 0 0 2px white;
+}
+
+.tab-content {
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Controles */
+.grid-controles {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.controle-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 12px;
+}
+
+.tecla {
+    background: var(--primary-darker);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-family: monospace;
+    font-weight: bold;
+    min-width: 70px;
+    text-align: center;
+}
+
+/* Mecânicas lista */
+.mecanica-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.mecanica-item {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+    padding: 12px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 15px;
+}
+
+.mecanica-icon {
+    font-size: 2rem;
+}
+
+.mecanica-item h4 {
+    margin-bottom: 5px;
+    color: var(--primary-darker);
+}
+
+/* Progressão */
+.progressao-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.nivel-item {
+    background: rgba(255,255,255,0.15);
+    padding: 15px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.nivel-icon {
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: gold;
+}
+
+/* Dicas */
+.dicas-lista {
+    list-style: none;
+    padding: 0;
+}
+
+.dicas-lista li {
+    padding: 12px;
+    margin: 8px 0;
+    background: rgba(255,255,255,0.15);
+    border-radius: 10px;
+}
+
+/* Cards de Update */
+.update-card {
+    cursor: pointer;
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+
+.update-card .card-header {
+    font-weight: bold;
+    font-size: 1.1rem;
+    padding: 15px 20px;
+    transition: background 0.2s;
+}
+
+.update-card .card-header:hover {
+    background: var(--secondary-dark);
+}
+
+.update-card.active .card-header {
+    background: var(--secondary-dark);
+    color: white;
+}
+
+.update-card .card-content {
+    display: none;
+    padding: 0 20px 20px 20px;
+    border-top: 1px solid rgba(255,255,255,0.3);
+    animation: slideDown 0.25s ease;
+}
+
+.update-card .card-content.show {
+    display: block !important;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.update-title {
+    background: var(--primary-darker);
+    color: white;
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: 30px;
+    margin-bottom: 25px;
+}
+
+/* Botão Download */
+.download-btn {
+    background: var(--primary-dark);
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 40px;
+    cursor: pointer;
+    margin: 20px 0;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow);
+}
+
+.download-btn:hover {
+    background: var(--primary-darker);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+
+.download-btn:active {
+    transform: scale(0.97);
+}
+
+/* Footer */
+.footer {
+    background: var(--primary-darker);
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px;
+    }
+    
+    .logo-area {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    nav {
+        justify-content: center;
+    }
+    
+    .container {
+        padding: 15px;
+    }
+    
+    .grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .download-btn {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .tab-buttons {
+        justify-content: center;
+    }
+}
+
+/* Acessibilidade */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+button:focus-visible, .logo-image:focus-visible {
+    outline: 3px solid var(--primary-darker);
+    outline-offset: 2px;
+}
+
+html {
+    scroll-behavior: smooth;
+}

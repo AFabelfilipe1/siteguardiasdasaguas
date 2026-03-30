@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Projeto Guardiãs das Águas - Jogo de aventura inspirado na mitologia indígena brasileira">
+    <meta name="theme-color" content="#8e6db3">
+    <title>Guardiãs das Águas</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/jpeg" href="assets/logo-guardiaAguas.jpg">
+</head>
+<body>
+    <header class="topbar">
+        <div class="logo-area">
+            <img src="assets/logo-guardiaAguas.jpg" alt="Logo do Projeto Guardiãs das Águas" class="logo-image" loading="eager">
+            <div>
+                <h2>Guardiãs das Águas</h2>
+                <p>Projeto de proteção e conservação das águas</p>
+                <p>Projeto Saga Senai</p>
+            </div>
+        </div>
+        <nav aria-label="Navegação principal">
+            <button onclick="showPage('home')" class="nav-btn" data-page="home">Página Inicial</button>
+            <button onclick="showPage('specs')" class="nav-btn" data-page="specs">Especificações</button>
+            <button onclick="showPage('updates')" class="nav-btn" data-page="updates">Atualizações</button>
+        </nav>
+    </header>
+
+    <!-- Página Inicial -->
+    <section id="home" class="page active">
+        <div class="container">
+            <h2>Bem-vindo ao Projeto "Guardiãs das Águas"</h2>
+            
+            <div class="intro-text">
+                <p>Este projeto é uma iniciativa de desenvolvimento de um jogo de aventura inspirado na mitologia indígena brasileira, com o objetivo de promover a conscientização sobre a importância da preservação dos recursos hídricos e a valorização da cultura indígena.</p>
+            </div>
+
+            <div class="card">
+                <h1>Sobre o Jogo: <span class="game-title">Mythos</span></h1>
+                <h2>Descrição:</h2>
+                <p>O Game "Mythos" é um jogo de aventura que se inspira nas narrativas da cultura indígena brasileira. O jogador acompanha Yandara, a guardiã das águas, em sua missão de proteger os rios sagrados contra as forças que ameaçam o equilíbrio da natureza.</p>
+            </div>
+
+            <div class="grid">
+                <div class="card">
+                    <h2>Sobre o Projeto:</h2>
+                    <p><strong>🎯 Objetivo do jogo:</strong><br>Conscientizar sobre a preservação das águas através da cultura indígena.</p>
+                    <p><strong>👥 Público-alvo:</strong><br>Jovens e adultos interessados em jogos de aventura e cultura brasileira.</p>
+                    <p><strong>🎮 Motor de Jogo:</strong><br>Godot</p>
+                    <p><strong>⚔️ Gênero:</strong><br>Aventura e RPG</p>
+                    <p><strong>🐍 Linguagem:</strong><br>GDScript (similar a Python)</p>
+                    <p><strong>💻 Plataformas:</strong><br>Windows, Linux e macOS</p>
+                    <p><strong>🌎 Contexto cultural:</strong><br>Mitologia indígena brasileira e lendas populares</p>
+                </div>
+
+                <div class="card">
+                    <h2>Sobre a Equipe:</h2>
+                    <p><strong>Área 404 - Desenvolvimento de Jogos</strong></p>
+                    <p><strong>👨‍💻 Alunos:</strong><br>
+                    - Abel Filipe Cardoso Cândido<br>
+                    - Lais Barbosa Santos<br>
+                    - Mykael José Rodrigues Lima<br>
+                    - Matheus Barroso Silva<br>
+                    - Sophia Alves de Araujo e Lima</p>
+                    <p><strong>👨‍🏫 Orientador:</strong> Professor Lucas da Silva Lopes</p>
+                    <p><strong>📚 Área de Atuação:</strong><br>Programação de Jogos Digitais - Senai Uberlândia</p>
+                </div>
+            </div>
+
+            <!-- Mecânicas de Jogo em Abas -->
+            <div class="card mecanicas-card">
+                <h2>🎮 Mecânicas de Jogo & Como Jogar</h2>
+                
+                <div class="mecanicas-tabs">
+                    <div class="tab-buttons">
+                        <button class="tab-btn active" onclick="showTab('controles')">⌨️ Controles</button>
+                        <button class="tab-btn" onclick="showTab('mecanicas')">⚔️ Mecânicas</button>
+                        <button class="tab-btn" onclick="showTab('progressao')">📈 Progressão</button>
+                        <button class="tab-btn" onclick="showTab('dicas')">💡 Dicas</button>
+                    </div>
+                    
+                    <div id="controles" class="tab-content active">
+                        <div class="grid-controles">
+                            <div class="controle-item"><span class="tecla">W/A/S/D</span><span>Movimentar Yandara</span></div>
+                            <div class="controle-item"><span class="tecla">Espaço</span><span>Pular</span></div>
+                            <div class="controle-item"><span class="tecla">Shift</span><span>Correr</span></div>
+                            <div class="controle-item"><span class="tecla">E</span><span>Coletar/Purificar</span></div>
+                            <div class="controle-item"><span class="tecla">Q</span><span>Poder Especial</span></div>
+                            <div class="controle-item"><span class="tecla">M</span><span>Abrir Mapa</span></div>
+                            <div class="controle-item"><span class="tecla">I</span><span>Inventário</span></div>
+                            <div class="controle-item"><span class="tecla">ESC</span><span>Menu/Pausa</span></div>
+                        </div>
+                    </div>
+                    
+                    <div id="mecanicas" class="tab-content">
+                        <div class="mecanica-lista">
+                            <div class="mecanica-item"><span class="mecanica-icon">💧</span><div><h4>Coleta de Água Sagrada</h4><p>A água sagrada recupera vida e aumenta seu poder temporariamente.</p></div></div>
+                            <div class="mecanica-item"><span class="mecanica-icon">🌿</span><div><h4>Purificação de Nascentes</h4><p>Limpe nascentes poluídas para restaurar o equilíbrio da natureza.</p></div></div>
+                            <div class="mecanica-item"><span class="mecanica-icon">🐍</span><div><h4>Combate Espiritual</h4><p>Derrote espíritos das trevas usando seus poderes aquáticos.</p></div></div>
+                            <div class="mecanica-item"><span class="mecanica-icon">🗺️</span><div><h4>Exploração</h4><p>Descubra áreas secretas e desbloqueie novos caminhos.</p></div></div>
+                        </div>
+                    </div>
+                    
+                    <div id="progressao" class="tab-content">
+                        <div class="progressao-grid">
+                            <div class="nivel-item"><div class="nivel-icon">⭐ Nível 1</div><p>Iniciante: Poder básico de purificação</p></div>
+                            <div class="nivel-item"><div class="nivel-icon">⭐⭐ Nível 2</div><p>Aprendiz: Desbloqueia corrida e pulo duplo</p></div>
+                            <div class="nivel-item"><div class="nivel-icon">⭐⭐⭐ Nível 3</div><p>Guardiã: Ataque em área e escudo d'água</p></div>
+                            <div class="nivel-item"><div class="nivel-icon">⭐⭐⭐⭐ Nível 4</div><p>Mestra: Invoca espíritos protetores</p></div>
+                            <div class="nivel-item"><div class="nivel-icon">⭐⭐⭐⭐⭐ Nível 5</div><p>Lenda: Forma aquática suprema</p></div>
+                        </div>
+                    </div>
+                    
+                    <div id="dicas" class="tab-content">
+                        <ul class="dicas-lista">
+                            <li>💡 Colete todas as águas sagradas - elas são essenciais para enfrentar chefes</li>
+                            <li>💡 Complete missões secundárias para ganhar Essências das Águas extras</li>
+                            <li>💡 Use o mapa para localizar nascentes poluídas</li>
+                            <li>💡 Converse com todos os NPCs - alguns dão pistas valiosas</li>
+                            <li>💡 Volte a áreas anteriores com novos poderes para acessar segredos</li>
+                            <li>💡 O poder de purificação é mais efetivo quando usado em combos</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Especificações Técnicas -->
+    <section id="specs" class="page">
+        <div class="container">
+            <h2>Especificações Técnicas</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>📌 Requisitos Mínimos</h3>
+                    <p><strong>SO:</strong> Windows 10 64-bit</p>
+                    <p><strong>Processador:</strong> Intel i3 / AMD equivalente</p>
+                    <p><strong>Memória:</strong> 6 GB RAM</p>
+                    <p><strong>GPU:</strong> GTX 600 ou Radeon HD 7000</p>
+                    <p><strong>DirectX:</strong> 11</p>
+                    <p><strong>Armazenamento:</strong> 50 GB</p>
+                </div>
+                <div class="card">
+                    <h3>⚡ Requisitos Recomendados</h3>
+                    <p><strong>SO:</strong> Windows 10/11 64-bit</p>
+                    <p><strong>Processador:</strong> Intel i7 / Ryzen 5</p>
+                    <p><strong>Memória:</strong> 8 GB RAM</p>
+                    <p><strong>GPU:</strong> GTX 1060 / RX 6400</p>
+                    <p><strong>DirectX:</strong> 11</p>
+                    <p><strong>Armazenamento:</strong> 50 GB SSD</p>
+                </div>
+            </div>
+            <button class="download-btn" onclick="mostrarMensagem()">📥 Download da Demo</button>
+        </div>
+    </section>
+
+    <!-- Atualizações -->
+    <section id="updates" class="page">
+        <div class="container">
+            <h2 class="update-title">📢 Atualizações</h2>
+            <div class="updates-list">
+                <div class="card update-card" onclick="toggleCard(this)">
+                    <div class="card-header">🔧 Atualização #1: Versão 0.1 - Protótipo inicial</div>
+                    <div class="card-content"><p>Protótipo básico com mecânicas fundamentais de movimento e interação.</p></div>
+                </div>
+                <div class="card update-card" onclick="toggleCard(this)">
+                    <div class="card-header">🗺️ Atualização #2: Versão 0.5 - Sistema de mapa</div>
+                    <div class="card-content"><p>Sistema completo de mapa, permitindo navegação pelos rios sagrados e regiões da floresta.</p></div>
+                </div>
+                <div class="card update-card" onclick="toggleCard(this)">
+                    <div class="card-header">🎮 Atualização #3: Versão 1.0 - Demo jogável</div>
+                    <div class="card-content"><p>Demo jogável com 3 fases completas, inimigos básicos e desafios ambientais.</p></div>
+                </div>
+                <div class="card update-card" onclick="toggleCard(this)">
+                    <div class="card-header">🔄 Atualização #4: Versão 1.1 - Compatibilidade</div>
+                    <div class="card-content"><p>Compatibilidade melhorada com diferentes hardwares e correção de bugs.</p></div>
+                </div>
+                <div class="card update-card" onclick="toggleCard(this)">
+                    <div class="card-header">🚀 Atualização #5: Versão 1.5 - Divulgação final</div>
+                    <div class="card-content"><p>Versão final com todas as fases desbloqueadas, cutscenes completas e conquistas.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>© 2024 Guardiãs das Águas - Projeto Saga Senai. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
