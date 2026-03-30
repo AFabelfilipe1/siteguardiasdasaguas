@@ -141,5 +141,36 @@ document.addEventListener('DOMContentLoaded', () => {
         homeBtn.setAttribute('aria-current', 'page');
     }
     
+    // Trailer clicável
+    function embedTrailer(containerId, videoId, options = {}) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+
+        // Parâmentros padrão(privacy-enhanced)
+        const params = new URLSearchParams({
+            enablejsapi: 1,
+            autoplay: 0,
+            rel: 0,
+            modelbranding: 1,
+            ...options
+        });
+
+        // Usa youtube-nocokie.com para privacidade
+        const embledUrl = `https://www.youtube-nocookie.com/embed/${videoId}?${params}`;
+
+        // Criar o iframe responsivo 
+        container.innerHTML = `
+            <div class="video-wrapper">
+                <iframe
+                    src="${embledUrl}"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
+            </div>
+        `;
+    }
+
+
     console.log('🌊 Guardiãs das Águas - Site carregado com sucesso!');
 });
