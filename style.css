@@ -9,6 +9,10 @@
     --text-light: #fff;
     --shadow: 0 4px 8px rgba(0,0,0,0.1);
     --shadow-hover: 0 6px 12px rgba(0,0,0,0.15);
+    
+    /* Cores das redes sociais */
+    --instagram-gradient: linear-gradient(45deg, #f09433, #d62976, #962fbf, #4f5bd5);
+    --youtube-red: #ff0000;
 }
 
 * {
@@ -107,6 +111,7 @@ nav button.active-nav {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
+    flex: 1;
 }
 
 /* Páginas */
@@ -288,7 +293,7 @@ nav button.active-nav {
 .nivel-icon {
     font-weight: bold;
     margin-bottom: 8px;
-    color: gold;
+    color: var(--gold);
 }
 
 /* Dicas */
@@ -377,20 +382,21 @@ nav button.active-nav {
     transform: scale(0.97);
 }
 
-/*Video-Trailer*/
-.video-wrapper {
+/* Trailer */
+.trailer-container {
     position: relative;
     width: 100%;
-    height: 0;
-    padding-bottom: 56.25%; /* Proporção 16:9 */
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow-hover);
+    margin: 20px 0;
 }
 
-.video-wrapper iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
+.trailer-container iframe {
     width: 100%;
-    height: 100%;
+    height: 400px;
+    border: none;
+    display: block;
 }
 
 /* Footer */
@@ -431,24 +437,50 @@ nav button.active-nav {
 }
 
 .footer-social a {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     transition: all 0.3s ease;
     text-decoration: none;
+    border-radius: 50%;
+    /* O padding agora é proporcional ao tamanho da imagem */
+    padding: 6px;
+    background: rgba(255, 255, 255, 0.1);
 }
 
 .footer-social img {
     width: 32px;
     height: 32px;
     filter: brightness(0) invert(1);
-    transition: transform 0.3s ease, filter 0.3s ease;
+    transition: all 0.3s ease;
+    display: block;
 }
 
-.footer-social a:hover img {
+/* Instagram - Efeito Gradiente */
+.footer-social a[aria-label="Instagram"]:hover {
+    background: var(--instagram-gradient);
     transform: translateY(-5px) scale(1.1);
-    filter: brightness(0) invert(0.8) sepia(1) hue-rotate(50deg) saturate(5);
+    box-shadow: 0 8px 20px rgba(214, 41, 118, 0.4);
 }
 
-/* Responsivo */
+.footer-social a[aria-label="Instagram"]:hover img {
+    filter: brightness(0) invert(1);
+    transform: scale(1.05);
+}
+
+/* YouTube - Vermelho */
+.footer-social a[aria-label="YouTube"]:hover {
+    background: var(--youtube-red);
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 8px 20px rgba(255, 0, 0, 0.4);
+}
+
+.footer-social a[aria-label="YouTube"]:hover img {
+    filter: brightness(0) invert(1);
+    transform: scale(1.05);
+}
+
+/* Responsivo - Ajuste automático do tamanho da bolinha */
 @media (max-width: 768px) {
     header {
         flex-direction: column;
@@ -491,6 +523,11 @@ nav button.active-nav {
         gap: 20px;
     }
     
+    /* Bolinha menor no mobile */
+    .footer-social a {
+        padding: 5px;
+    }
+    
     .footer-social img {
         width: 28px;
         height: 28px;
@@ -505,6 +542,22 @@ nav button.active-nav {
     }
 }
 
+/* Para telas muito pequenas (celulares menores) */
+@media (max-width: 480px) {
+    .footer-social {
+        gap: 15px;
+    }
+    
+    .footer-social a {
+        padding: 4px;
+    }
+    
+    .footer-social img {
+        width: 24px;
+        height: 24px;
+    }
+}
+
 /* Acessibilidade */
 @media (prefers-reduced-motion: reduce) {
     * {
@@ -513,11 +566,127 @@ nav button.active-nav {
     }
 }
 
-button:focus-visible, .logo-image:focus-visible {
-    outline: 3px solid var(--primary-darker);
+button:focus-visible, 
+.logo-image:focus-visible, 
+.footer-social a:focus-visible {
+    outline: 3px solid var(--gold);
     outline-offset: 2px;
 }
 
 html {
     scroll-behavior: smooth;
+}
+
+/* Estilo Steam para o Trailer */
+.trailer-principal {
+    margin: 20px 0;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #000;
+    box-shadow: var(--shadow-hover);
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* Proporção 16:9 */
+    background: #000;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Galeria estilo Steam */
+.galeria-trailer {
+    margin: 30px 0 20px;
+}
+
+.galeria-trailer h3 {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    color: var(--primary-darker);
+    padding-left: 10px;
+    border-left: 4px solid var(--primary);
+}
+
+.thumbs-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.thumb-item {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: var(--secondary);
+    box-shadow: var(--shadow);
+}
+
+.thumb-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+.thumb-item img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.thumb-item:hover img {
+    transform: scale(1.05);
+}
+
+.thumb-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    padding: 40px 15px 15px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+
+.thumb-overlay span {
+    display: inline-block;
+    background: rgba(0,0,0,0.6);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    backdrop-filter: blur(4px);
+}
+
+/* Indicador de vídeo ativo */
+.thumb-item.active-thumb {
+    border: 3px solid var(--primary);
+    box-shadow: 0 0 0 2px rgba(142, 109, 179, 0.3);
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .thumbs-container {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 15px;
+    }
+    
+    .thumb-item img {
+        height: 140px;
+    }
+    
+    .thumb-overlay span {
+        font-size: 0.75rem;
+    }
 }

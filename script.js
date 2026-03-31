@@ -186,3 +186,78 @@ document.addEventListener('DOMContentLoaded', () => {
 
     console.log('🌊 Guardiãs das Águas - Site carregado com sucesso!');
 });
+
+// Sistema de troca de trailer (estilo Steam)
+document.addEventListener('DOMContentLoaded', () => {
+    // Configuração dos vídeos da galeria
+    const videos = {
+        'BDyTQmUd_aw': 'Trailer Oficial - Guardiãs das Águas',
+        'assets/thumb-gameplay1.jpg': 'Gameplay: Batalha contra espíritos',
+        'assets/thumb-gameplay2.jpg': 'Gameplay: Exploração da floresta',
+        'assets/thumb-apresentaçãopersonagens.jpg': 'Apresentação dos personagens'
+    };
+    
+    // Pegar elementos
+    const mainIframe = document.getElementById('main-trailer');
+    const thumbItems = document.querySelectorAll('.thumb-item');
+    
+    // Função para trocar o vídeo principal
+    function changeTrailer(videoId, title) {
+        if (!mainIframe) return;
+        
+        // Atualizar o src do iframe
+        const currentSrc = mainIframe.src;
+        const baseUrl = 'https://www.youtube.com/embed/';
+        const params = '?enablejsapi=1&rel=0&modestbranding=1';
+        
+        mainIframe.src = `${baseUrl}${videoId}${params}`;
+        
+        // Atualizar título do vídeo (opcional)
+        const trailerTitle = document.querySelector('.galeria-trailer h3');
+        if (trailerTitle && title) {
+            // Você pode criar um elemento separado para mostrar o título do vídeo atual
+            console.log(`🎬 Reproduzindo: ${title}`);
+        }
+        
+        // Scroll suave até o vídeo (opcional)
+        const videoContainer = document.querySelector('.trailer-principal');
+        if (videoContainer && window.innerWidth <= 768) {
+            videoContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }
+    
+    // Adicionar evento de clique em cada thumbnail
+    thumbItems.forEach((thumb, index) => {
+        thumb.addEventListener('click', () => {
+            const videoId = thumb.getAttribute('data-video');
+            const videoTitle = videos[videoId] || 'Vídeo do jogo';
+            
+            if (videoId) {
+                changeTrailer(videoId, videoTitle);
+                
+                // Remover classe active de todas as thumbs
+                thumbItems.forEach(t => t.classList.remove('active-thumb'));
+                // Adicionar classe active na thumb clicada
+                thumb.classList.add('active-thumb');
+            }
+        });
+    });
+    
+    // Adicionar efeito de hover com tooltip
+    thumbItems.forEach(thumb => {
+        const overlay = thumb.querySelector('.thumb-overlay span');
+        if (overlay) {
+            thumb.setAttribute('title', overlay.textContent);
+        }
+    });
+});
+
+// Se quiser que o vídeo seja responsivo ao redimensionar a janela
+window.addEventListener('resize', () => {
+    const videoContainer = document.querySelector('.video-container');
+    if (videoContainer) {
+        const width = videoContainer.clientWidth;
+        const height = width * 0.5625; // 16:9 ratio
+        // O iframe já se ajusta automaticamente via CSS
+    }
+});

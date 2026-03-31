@@ -185,14 +185,57 @@
     </section>
 
      <!-- Trailer -->
-    <section id="contact" class="page">
-        <div class="container">
-            <h2>🎬 Trailer Oficial</h2>
-            <div class="trailer-container">
-                <iframe width="100%" height="400" src="https://www.youtube.com/embed/BDyTQmUd_aw?si=GEsUXa3GYAD8Di2Q" title="Trailer do Jogo Guardiãs das Águas" frameborder="0" allowfullscreen></iframe>
+<section id="contact" class="page">
+    <div class="container">
+        <h2>🎬 Trailer Oficial</h2>
+        
+        <!-- Vídeo Principal -->
+        <div class="trailer-principal">
+            <div class="video-container">
+                <iframe id="main-trailer" 
+                    width="100%" 
+                    height="100%" 
+                    src="https://www.youtube.com/embed/BDyTQmUd_aw?si=GEsUXa3GYAD8Di2Q&enablejsapi=1" 
+                    title="Trailer do Jogo Guardiãs das Águas" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
             </div>
         </div>
-    </section>
+
+        <!-- Galeria de Miniaturas (estilo Steam) -->
+        <div class="galeria-trailer">
+            <h3>📸 Conteúdo Relacionado</h3>
+            <div class="thumbs-container">
+                <div class="thumb-item" data-video="BDyTQmUd_aw">
+                    <img src="assets/thumb-trailer1.jpg" alt="Thumbnail do Trailer Oficial">
+                    <div class="thumb-overlay">
+                        <span>🎬 Trailer Oficial</span>
+                    </div>
+                </div>
+                <div class="thumb-item" data-img="assets/thumb-gameplay1.jpg">
+                    <img src="assets/thumb-gameplay1.jpg" alt="Gameplay - Batalha contra espíritos">
+                    <div class="thumb-overlay">
+                        <span>⚔️ Gameplay: Batalha</span>
+                    </div>
+                </div>
+                <div class="thumb-item" data-img="assets/thumb-gameplay2.jpg">
+                    <img src="assets/thumb-gameplay2.jpg" alt="Gameplay - Exploração da floresta">
+                    <div class="thumb-overlay">
+                        <span>🗺️ Gameplay: Exploração</span>
+                    </div>
+                </div>
+                <div class="thumb-item" data-img="assets/thumb-apresentaçãopersonagens.jpg">
+                    <img src="assets/thumb-apresentaçãopersonagens.jpg" alt="Apresentação dos personagens">
+                    <div class="thumb-overlay">
+                        <span>👥 Personagens</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
         <!-- Footer -->
     <footer class="footer">
