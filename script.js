@@ -141,6 +141,18 @@ document.addEventListener('DOMContentLoaded', () => {
         homeBtn.setAttribute('aria-current', 'page');
     }
     
+    // Botao clicavel para perfil do instagram
+    const instagramLink = document.querySelector('a[aria-label="Instagram"]');
+    if (instagramLink) {
+        instagramLink.href = 'https://www.instagram.com/guardias.aguas';
+    }
+
+    // Botão clicável para canal do YouTube
+    const youtubeLink = document.querySelector('a[aria-label="YouTube"]');
+    if (youtubeLink) {
+        youtubeLink.href = 'https://www.youtube.com/@leatoxufu4347';
+    }
+
     // Trailer clicável
     function embedTrailer(containerId, videoId, options = {}) {
         const container = document.getElementById(containerId);
