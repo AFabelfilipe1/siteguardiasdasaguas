@@ -185,8 +185,17 @@ nav {
     margin-top: 15px;
     padding-top: 15px;
     border-top: 1px solid rgba(0,0,0,0.1);
-    font-style: italic;
+    font-style: normal;
     color: var(--primary-darker);
+}
+
+.strategy-highlight {
+    font-weight: 700;
+    line-height: 1.7;
+}
+
+.strategy-highlight strong {
+    font-weight: 800;
 }
 
 /* Abas de mecânicas */
@@ -426,14 +435,28 @@ nav {
     border-left: 4px solid var(--primary);
 }
 
+.carousel-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.thumbs-viewport {
+    overflow: hidden;
+    width: 100%;
+}
+
 .thumbs-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    display: flex;
     gap: 20px;
+    transition: transform 0.35s ease;
+    will-change: transform;
 }
 
 .thumb-item {
     position: relative;
+    min-width: calc((100% - 40px) / 3);
+    flex: 0 0 calc((100% - 40px) / 3);
     border-radius: 12px;
     overflow: hidden;
     cursor: pointer;
@@ -484,6 +507,52 @@ nav {
 .thumb-item.active-thumb {
     border: 3px solid var(--primary);
     box-shadow: 0 0 0 2px rgba(142, 109, 179, 0.3);
+}
+
+.carousel-btn {
+    border: none;
+    background: var(--primary-dark);
+    color: white;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: var(--shadow);
+}
+
+.carousel-btn:hover {
+    background: var(--primary-darker);
+    transform: translateY(-2px);
+}
+
+.carousel-btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.carousel-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 14px;
+}
+
+.carousel-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(74, 58, 99, 0.35);
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.carousel-dot.active {
+    background: var(--primary-darker);
+    transform: scale(1.15);
 }
 
 /* Footer */
@@ -618,13 +687,23 @@ nav {
         height: 28px;
     }
     
-    .thumbs-container {
-        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-        gap: 15px;
+    .thumb-item {
+        min-width: calc((100% - 15px) / 2);
+        flex: 0 0 calc((100% - 15px) / 2);
     }
     
     .thumb-item img {
         height: 140px;
+    }
+
+    .carousel-wrapper {
+        gap: 10px;
+    }
+
+    .carousel-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 1.1rem;
     }
     
     .thumb-overlay span {
@@ -633,6 +712,15 @@ nav {
 }
 
 @media (max-width: 480px) {
+    .thumb-item {
+        min-width: 100%;
+        flex: 0 0 100%;
+    }
+
+    .carousel-wrapper {
+        gap: 6px;
+    }
+
     .footer-social {
         gap: 15px;
     }

@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Sistema de troca de trailer (estilo Steam)
 function setupGallery() {
-    const mainIframe = document.getElementById('main-trailer');
+    let mainIframe = document.getElementById('main-trailer');
     const thumbItems = document.querySelectorAll('.thumb-item');
     
     if (!mainIframe) return;
@@ -191,10 +191,10 @@ function setupGallery() {
             imgElement.addEventListener('dblclick', () => {
                 videoContainer.innerHTML = '';
                 videoContainer.appendChild(originalIframe);
+                mainIframe = document.getElementById('main-trailer');
             });
         } else if (videoId) {
             // Para vídeos do YouTube
-            const currentSrc = mainIframe.src;
             const baseUrl = 'https://www.youtube.com/embed/';
             const params = '?enablejsapi=1&rel=0';
             
@@ -216,8 +216,8 @@ function setupGallery() {
                 videoContainer.innerHTML = '';
                 videoContainer.appendChild(newIframe);
                 
-                // Atualizar referência
-                window.mainIframe = document.getElementById('main-trailer');
+                // Atualizar referência local do iframe restaurado
+                mainIframe = document.getElementById('main-trailer');
             }
         }
     }
@@ -249,6 +249,140 @@ function setupGallery() {
             thumb.setAttribute('title', overlay.textContent);
         }
     });
+
+    setupTrailerCarousel();
+}
+
+function setupTrailerCarousel() {
+    const wrapper = document.querySelector('.carousel-wrapper');
+    const viewport = document.querySelector('.thumbs-viewport');
+    const track = document.querySelector('.thumbs-container');
+    const slides = Array.from(document.querySelectorAll('.thumb-item'));
+    const prevBtn = document.querySelector('.carousel-btn.prev');
+    const nextBtn = document.querySelector('.carousel-btn.next');
+    const indicators = document.querySelector('.carousel-indicators');
+
+    if (!wrapper || !viewport || !track || slides.length === 0 || !prevBtn || !nextBtn || !indicators) {
+        return;
+    }
+
+    let currentIndex = 0;
+    let visibleSlides = 3;
+    let autoplayTimer = null;
+    const autoplayDelay = 3500;
+
+    function getVisibleSlides() {
+        const viewportWidth = viewport.clientWidth;
+        const slideWidth = slides[0].getBoundingClientRect().width;
+        if (!slideWidth) return 1;
+        return Math.max(1, Math.round(viewportWidth / slideWidth));
+    }
+
+    function getMaxIndex() {
+        return Math.max(0, slides.length - visibleSlides);
+    }
+
+    function renderDots() {
+        indicators.innerHTML = '';
+        const dotCount = getMaxIndex() + 1;
+
+        for (let i = 0; i < dotCount; i++) {
+            const dot = document.createElement('button');
+            dot.type = 'button';
+            dot.className = `carousel-dot${i === currentIndex ? ' active' : ''}`;
+            dot.setAttribute('aria-label', `Ir para grupo ${i + 1}`);
+            dot.addEventListener('click', () => {
+                currentIndex = i;
+                updateCarousel();
+            });
+            indicators.appendChild(dot);
+        }
+    }
+
+    function updateButtons() {
+        prevBtn.disabled = currentIndex <= 0;
+        nextBtn.disabled = currentIndex >= getMaxIndex();
+    }
+
+    function updateTrackPosition() {
+        const firstSlideWidth = slides[0].getBoundingClientRect().width;
+        const trackStyle = window.getComputedStyle(track);
+        const gap = parseFloat(trackStyle.gap) || 0;
+        const offset = currentIndex * (firstSlideWidth + gap);
+        track.style.transform = `translateX(-${offset}px)`;
+    }
+
+    function updateActiveDot() {
+        const dots = indicators.querySelectorAll('.carousel-dot');
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentIndex);
+        });
+    }
+
+    function updateCarousel() {
+        const maxIndex = getMaxIndex();
+        currentIndex = Math.max(0, Math.min(currentIndex, maxIndex));
+        updateTrackPosition();
+        updateButtons();
+        updateActiveDot();
+    }
+
+    function refreshCarouselLayout() {
+        visibleSlides = getVisibleSlides();
+        renderDots();
+        updateCarousel();
+    }
+
+    function stopAutoplay() {
+        if (autoplayTimer) {
+            clearInterval(autoplayTimer);
+            autoplayTimer = null;
+        }
+    }
+
+    function startAutoplay() {
+        stopAutoplay();
+        if (slides.length <= visibleSlides) {
+            return;
+        }
+
+        autoplayTimer = setInterval(() => {
+            const maxIndex = getMaxIndex();
+            if (currentIndex >= maxIndex) {
+                currentIndex = 0;
+            } else {
+                currentIndex += 1;
+            }
+            updateCarousel();
+        }, autoplayDelay);
+    }
+
+    prevBtn.addEventListener('click', () => {
+        if (currentIndex > 0) {
+            currentIndex -= 1;
+            updateCarousel();
+        }
+    });
+
+    nextBtn.addEventListener('click', () => {
+        if (currentIndex < getMaxIndex()) {
+            currentIndex += 1;
+            updateCarousel();
+        }
+    });
+
+    window.addEventListener('resize', refreshCarouselLayout);
+    wrapper.addEventListener('mouseenter', stopAutoplay);
+    wrapper.addEventListener('mouseleave', startAutoplay);
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            stopAutoplay();
+        } else {
+            startAutoplay();
+        }
+    });
+    refreshCarouselLayout();
+    startAutoplay();
 }
 
 // Exportar funções para uso global
